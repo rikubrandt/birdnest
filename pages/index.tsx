@@ -1,6 +1,5 @@
 import styles from "../styles/Home.module.css";
 import useSWR from "swr";
-import axios from "axios";
 import List from "@mui/material/List";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
@@ -8,7 +7,7 @@ import Card from "@mui/material/Card";
 import Violation from "../components/violation";
 
 export default function Home() {
-  const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
   const { data, error } = useSWR("/api/drones", fetcher, {
     refreshInterval: 10,
