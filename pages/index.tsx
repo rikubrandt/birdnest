@@ -7,11 +7,18 @@ import Card from "@mui/material/Card";
 import Violation from "../components/violation";
 
 export default function Home() {
-  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const fetcher = (url: string) =>
+    fetch(url, { headers: { "Access-Control-Allow-Origin": "*" } }).then(
+      (res) => res.json()
+    );
 
-  const { data, error } = useSWR("/api/drones", fetcher, {
-    refreshInterval: 10,
-  });
+  const { data, error } = useSWR(
+    "https://dolphin-app-sx5yd.ondigitalocean.app/drones",
+    fetcher,
+    {
+      refreshInterval: 1000,
+    }
+  );
 
   return (
     <Container maxWidth="sm">

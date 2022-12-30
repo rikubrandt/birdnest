@@ -1,10 +1,10 @@
-//List component to display violation
 import React from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import SendIcon from "@mui/icons-material/Send";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import type { Pilot } from "../pages/api/drones";
+
+//List component to display violation
 
 const Violation = ({ pilot }: { pilot: Pilot }) => {
   return (
@@ -20,6 +20,15 @@ const Violation = ({ pilot }: { pilot: Pilot }) => {
       />
     </ListItem>
   );
+};
+
+type Pilot = {
+  timestamp: string;
+  closestXY: [number, number];
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
 };
 
 export default Violation;
