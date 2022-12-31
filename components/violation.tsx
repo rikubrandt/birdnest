@@ -3,7 +3,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import SendIcon from "@mui/icons-material/Send";
 import ListItemIcon from "@mui/material/ListItemIcon";
-
+import { Pilot } from "../pages/index";
 //List component to display violation
 
 const Violation = ({ pilot }: { pilot: Pilot }) => {
@@ -20,15 +20,6 @@ const Violation = ({ pilot }: { pilot: Pilot }) => {
       />
     </ListItem>
   );
-};
-
-type Pilot = {
-  timestamp: string;
-  closestXY: [number, number];
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
 };
 
 export default Violation;

@@ -3,22 +3,16 @@ import useSWR from "swr";
 import List from "@mui/material/List";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
-
 import Violation from "../components/violation";
 
-export default function Home() {
-  const fetcher = (url: string) =>
-    fetch(url, { headers: { "Access-Control-Allow-Origin": "*" } }).then(
-      (res) => res.json()
-    );
+const API_URL = "https://dolphin-app-sx5yd.ondigitalocean.app/drones";
 
-  const { data, error } = useSWR(
-    "https://dolphin-app-sx5yd.ondigitalocean.app/drones",
-    fetcher,
-    {
-      refreshInterval: 1000,
-    }
-  );
+export default function Home() {
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+  const { data, error } = useSWR(API_URL, fetcher, {
+    refreshInterval: 1000,
+  });
 
   return (
     <Container maxWidth="sm">
@@ -29,7 +23,7 @@ export default function Home() {
         >
           {data &&
             Object.keys(data).map((violation, i) => (
-              <Violation key={i} pilot={data[violation]} />
+              <Violation key={i} pilot={data[violation] as Pilot} />
             ))}
         </List>
       </Card>
@@ -38,3 +32,12 @@ export default function Home() {
     </Container>
   );
 }
+
+export type Pilot = {
+  timestamp: string;
+  closestXY: [number, number];
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+};
