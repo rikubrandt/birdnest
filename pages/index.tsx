@@ -17,6 +17,12 @@ export default function Home() {
   return (
     <Container maxWidth="sm">
       <Card variant="outlined">
+        <div className={styles.title}>
+          Link to the{" "}
+          <a href="https://github.com/rikubrandt/birdnest">
+            <strong>code</strong>
+          </a>
+        </div>
         <h1 className={styles.title}>Area violations</h1>
         <List
           sx={{ width: "100%", maxWidth: 450, bgcolor: "background.paper" }}
